@@ -1,8 +1,6 @@
 #---------------------------------------------------------------------------#
 # jour_1_atelier_1_houses.R
 # Formation "Premiers pas en Machine Learning avec R" - Pyranhia
-# Squelette genere automatiquement depuis doc_jour_1.qmd (Prédiction du prix des maisons (California Housing))
-# ATTENTION : fichier genere automatiquement, a relire avant utilisation.
 #---------------------------------------------------------------------------#
 
 ## Prédiction du prix des maisons (California Housing) -----------------------
@@ -33,13 +31,13 @@ housing <- housing |>
 idx <- partition(
   housing$median_house_value_sqrt,
   p = c(train = 0.80, test = 0.20), # 80 % pour l'entraînement, 20% pour le test
-  n_bins = 4,                       # utiliser les quartiles pour la stratification
+  n_bins = 4, # utiliser les quartiles pour la stratification
   seed = 123
 )
 
 # Récupérer les jeux de données
 train_df <- housing |> slice(idx$train)
-test_df  <- housing |> slice(idx$test)
+test_df <- housing |> slice(idx$test)
 
 nrow(train_df) / nrow(housing)
 nrow(test_df) / nrow(housing)
@@ -76,8 +74,11 @@ test_pred <- test_pred |>
 
 # Calculer les métriques sur le jeu de test
 eval_res <- tibble(
-  rmse = RMSE(y_pred = test_pred$.pred, y_true = test_pred$median_house_value), 
-  mae  = MAE(y_pred = test_pred$.pred, y_true = test_pred$median_house_value),
-  rsq  = R2_Score(y_pred = test_pred$.pred, y_true = test_pred$median_house_value)
+  rmse = RMSE(y_pred = test_pred$.pred, y_true = test_pred$median_house_value),
+  mae = MAE(y_pred = test_pred$.pred, y_true = test_pred$median_house_value),
+  rsq = R2_Score(
+    y_pred = test_pred$.pred,
+    y_true = test_pred$median_house_value
+  )
 )
 eval_res

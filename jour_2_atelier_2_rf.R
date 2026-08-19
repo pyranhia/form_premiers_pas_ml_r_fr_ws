@@ -1,8 +1,6 @@
 #---------------------------------------------------------------------------#
 # jour_2_atelier_2_rf.R
 # Formation "Premiers pas en Machine Learning avec R" - Pyranhia
-# Squelette genere automatiquement depuis doc_jour_2.qmd (Forêt aléatoire (*Random Forest*, RF))
-# ATTENTION : fichier genere automatiquement, a relire avant utilisation.
 #---------------------------------------------------------------------------#
 
 ## Lecture des données -------------------------------------------------------
@@ -16,12 +14,6 @@ library(MLmetrics)
 library(datapyranhia)
 
 # Charger le jeu de données
-# <Votre code ici>
-
-# Aperçu rapide
-# <Votre code ici>
-
-# Visualiser la distribution de la cible
 # <Votre code ici>
 
 ## Étape 1 : générer les folds -----------------------------------------------
@@ -38,13 +30,10 @@ library(datapyranhia)
 predict_fold <- function(train_idx) {
   # Construire fold_train et fold_test
   # <Votre code ici>
-
   # Entraîner le Random Forest sur fold_train
   # <Votre code ici>
-
   # Prédire sur fold_test
   # <Votre code ici>
-
   # Renvoyer un tibble avec les prédictions et les vraies valeurs
   # <Votre code ici>
 }
@@ -64,3 +53,32 @@ predict_fold <- function(train_idx) {
 
 # Matrice de confusion
 # <Votre code ici>
+
+classes_rf <- unique(cv_pred$contraceptive_method)
+
+report_rf <- map_dfr(classes_rf, function(cl) {
+  truth_binary <- as.numeric(cv_pred$contraceptive_method == cl)
+  estimate_binary <- as.numeric(cv_pred$.pred_class == cl)
+
+  tibble(
+    class = as.character(cl),
+    precision = Precision(
+      y_true = truth_binary,
+      y_pred = estimate_binary,
+      positive = "1"
+    ),
+    recall = Recall(
+      y_true = truth_binary,
+      y_pred = estimate_binary,
+      positive = "1"
+    ),
+    f1 = F1_Score(
+      y_true = truth_binary,
+      y_pred = estimate_binary,
+      positive = "1"
+    ),
+    support = sum(cv_pred$contraceptive_method == cl)
+  )
+})
+
+report_rf

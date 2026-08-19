@@ -1,8 +1,6 @@
 #---------------------------------------------------------------------------#
 # jour_1_atelier_2_titanic.R
 # Formation "Premiers pas en Machine Learning avec R" - Pyranhia
-# Squelette genere automatiquement depuis doc_jour_1.qmd (Prédiction de la survie des passagers du Titanic)
-# ATTENTION : fichier genere automatiquement, a relire avant utilisation.
 #---------------------------------------------------------------------------#
 
 ## Chargement et aperçu des données ------------------------------------------

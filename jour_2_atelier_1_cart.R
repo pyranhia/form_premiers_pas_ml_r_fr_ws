@@ -1,11 +1,9 @@
 #---------------------------------------------------------------------------#
 # jour_2_atelier_1_cart.R
 # Formation "Premiers pas en Machine Learning avec R" - Pyranhia
-# Squelette genere automatiquement depuis doc_jour_2.qmd (Mise en pratique : entraîner et évaluer un CART)
-# ATTENTION : fichier genere automatiquement, a relire avant utilisation.
 #---------------------------------------------------------------------------#
 
-## Lecture et préparation des données ----------------------------------------
+## Lecture et exploration des données ----------------------------------------
 #---------------------------------------------------------------------------#
 
 # Charger les packages
@@ -17,6 +15,15 @@ library(datapyranhia)
 
 # Charger le jeu de données
 # <Votre code ici>
+
+# Aperçu rapide de la structure et des valeurs manquantes
+# <Votre code ici>
+
+# Visualiser la distribution de la cible
+# <Votre code ici>
+
+## Préparation des données ---------------------------------------------------
+#---------------------------------------------------------------------------#
 
 # Séparer les données (80/20), stratifié sur la cible
 # <Votre code ici>
